@@ -10,6 +10,8 @@ Next.js App Router – MySQL – TypeScript
 
 ---
 
+# NOTE: this project is still development, many concpets is wrong and must be refactor, change, and improve.
+
 ## 🧰 Requirements
 - Node.js `>=18`
 - MySQL Server

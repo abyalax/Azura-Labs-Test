@@ -5,6 +5,7 @@ Next.js App Router – MySQL – TypeScript
 ![MySQL](https://img.shields.io/badge/Database-MySQL-blue?logo=mysql)
 ![TypeScript](https://img.shields.io/badge/Language-TypeScript-blue?logo=typescript)
 ![TailwindCSS](https://img.shields.io/badge/UI-TailwindCSS-38B2AC?logo=tailwindcss)
+![Zod](https://img.shields.io/badge/Validation-Zod-green)  
 ![TanStack Table](https://img.shields.io/badge/Table-TanStack%20Table-orange)
 
 ---
@@ -36,11 +37,14 @@ npm install
 CREATE DATABASE db_books;
 ```
 
-#### ⚡ Import mock data
+#### ⚡ Import init data
+
+example
+
 ```bash
-mysql -u root -p db_books < "D:\\_path_\\_root-project_\\database\\init.sql"
+mysql -u root -p db_books < "D:\Documents\Programs\typescript\azura-labs\database\init.sql"
 ```
-> Sesuaikan path ke lokasi `init.sql` di project kamu.
+> Sesuaikan path ke lokasi `init.sql` di project.
 
 ### 4. Configure Environment Variables
 Buat file `.env` dan isi:
@@ -101,18 +105,10 @@ Aplikasi akan berjalan di [http://localhost:3000](http://localhost:3000)
 ---
 
 ## 📸 UI Preview (WIP)
-![Preview](https://via.placeholder.com/1000x600.png?text=Insert+UI+Screenshot+Here)
+![Preview](/assets/book-management.png)
+![Preview](/assets/category-management.png)
 
 ---
 
-## 🚀 Future Enhancements
-- [ ] Authentication & Role-based Access
-- [ ] Book cover upload with preview
-- [ ] Infinite scroll or server-side pagination
-- [ ] Export data (PDF / Excel)
-- [ ] Deploy to Vercel
-
----
-
-> Dibuat dengan penuh semangat oleh developer yang maniac code & perfectionist ❤️
+> Dibuat dengan penuh semangat oleh mahasiswa yang punya harapan besar ❤️
 

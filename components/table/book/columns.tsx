@@ -2,7 +2,7 @@
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Book } from "@/types"
-import { ColumnDef } from "@tanstack/react-table"
+import { ColumnDef, FilterFnOption } from "@tanstack/react-table"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -113,6 +113,8 @@ const columnsBook: ColumnDef<Book>[] = [
             }).format(date)
             return <div className="text-left">{formatted}</div>
         },
+        enableColumnFilter: true,
+        filterFn: "dateRange" as unknown as FilterFnOption<Book>,
     },
     {
         accessorKey: "price",

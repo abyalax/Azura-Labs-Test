@@ -1,9 +1,9 @@
 import { db } from "@/lib/db";
 import { FieldPacket, RowDataPacket } from "mysql2/promise";
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
-        const id = params.id
+        const { id } = await params
         const [results]: [RowDataPacket[], FieldPacket[]] = await db.query('SELECT * FROM categories WHERE id = ?;', [id])
         console.log(results);
         if (results.length == 0) {

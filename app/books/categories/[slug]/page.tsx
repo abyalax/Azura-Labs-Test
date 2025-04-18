@@ -1,9 +1,9 @@
-import columnsBook from "@/components/table/columns/book";
-import Table from "@/components/table/Table";
+import columnsBook from "@/components/table/book/columns";
+import Table from "@/components/table/book/Table";
 import { getBooksByCategory } from "@/services/books";
 import { Book } from "@/types";
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
 
     const { slug } = await params
     const books = await getBooksByCategory(slug) as Book[]
@@ -11,7 +11,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return (
         <main>
             <div className="bg-white mx-auto rounded-2xl p-4">
-                <Table columns={columnsBook} data={books}/>
+                <Table columns={columnsBook} data={books} />
             </div>
         </main>
     )

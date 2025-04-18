@@ -1,8 +1,8 @@
 import { getCategories } from "@/services/books"
 import { Category } from "@/types"
-import Table from "@/components/table/Table"
-import columnsCategory from "@/components/table/columns/category"
 import { FormCategory } from "@/components/form/form-category"
+import TableCategory from "@/components/table/category/Table"
+import columnsCategory from "@/components/table/category/columns"
 
 export default async function Page() {
     const categories = await getCategories() as Category[]
@@ -13,7 +13,7 @@ export default async function Page() {
                     <h2>Category Managements</h2>
                     <FormCategory type="add"/>
                 </div>
-                <Table columns={columnsCategory} data={categories} />
+                <TableCategory columns={columnsCategory} data={categories} />
             </div>
         </main>
     )

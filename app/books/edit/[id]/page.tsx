@@ -2,10 +2,12 @@ import { FormBook } from "@/components/form/form-book"
 import { getBookByID } from "@/services/books"
 import { Book } from "@/types"
 
-export default async function Page({ params }: { params: { id: number } }) {
-    const book = await getBookByID(( await params).id) as Book
+export default async function Page({ params }: { params: Promise<{ id: number }> }) {
+
+    const { id } = await params
+    const book = await getBookByID(id) as Book
     console.log(book);
-    
+
     if (book) {
         return (
             <main>

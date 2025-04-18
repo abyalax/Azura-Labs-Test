@@ -48,7 +48,6 @@ export const getCategoryNames = async () => {
 }
 export const getBooksByCategory = async (slug: string) => {
     try {
-
         const [rows]: [RowDataPacket[], FieldPacket[]] = await db.query(
             'SELECT * FROM categories WHERE slug = ?',
             [slug]

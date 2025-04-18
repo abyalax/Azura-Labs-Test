@@ -1,5 +1,6 @@
-import bookColumns from "@/components/table/columns/book";
-import Table, { TableOptionCustom } from "@/components/table/Table";
+import bookColumns from "@/components/table/book/columns";
+import TableBook from "@/components/table/book/Table";
+import { TableOptionCustom } from "@/components/table/book/Table";
 import { Button } from "@/components/ui/button";
 import { getBooks, getCategoryNames } from "@/services/books";
 import { Book } from "@/types";
@@ -15,7 +16,7 @@ export default async function Page() {
             label: "Filter By Category",
             lists,
             columnId: "category"
-        }
+        },
     ]
     return (
         <div className="bg-white w-fit mx-auto rounded-2xl p-4">
@@ -28,7 +29,7 @@ export default async function Page() {
                     </Link>
                 </Button>
             </div>
-            <Table columns={bookColumns} data={books} options={options} />
+            <TableBook columns={bookColumns} data={books} options={options}/>
         </div>
     );
 }

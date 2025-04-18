@@ -2,9 +2,9 @@ import { FormCategory } from "@/components/form/form-category"
 import { getCategoryByID } from "@/services/books"
 import { Category } from "@/types"
 
-export default async function Page({ params }: { params: { id: number } }) {
+export default async function Page({ params }: { params: Promise<{ id: number }> }) {
 
-    const id = (await params).id
+    const { id } = await params
     const category = await getCategoryByID(id) as Category
 
     if (category) {

@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📘 Azura Labs – Books Management App
+Next.js App Router – MySQL – TypeScript
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-15.3.0-black?logo=next.js)
+![MySQL](https://img.shields.io/badge/Database-MySQL-blue?logo=mysql)
+![TypeScript](https://img.shields.io/badge/Language-TypeScript-blue?logo=typescript)
+![TailwindCSS](https://img.shields.io/badge/UI-TailwindCSS-38B2AC?logo=tailwindcss)
+![TanStack Table](https://img.shields.io/badge/Table-TanStack%20Table-orange)
 
-First, run the development server:
+---
 
+## 🧰 Requirements
+- Node.js `>=18`
+- MySQL Server
+- Paket manager (npm/yarn/pnpm)
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <your-repo-url>
+cd azura-labs
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Setup Database
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### ✅ Buat database baru
+```sql
+CREATE DATABASE db_books;
+```
 
-## Learn More
+#### ⚡ Import mock data
+```bash
+mysql -u root -p db_books < "D:\\_path_\\_root-project_\\database\\init.sql"
+```
+> Sesuaikan path ke lokasi `init.sql` di project kamu.
 
-To learn more about Next.js, take a look at the following resources:
+### 4. Configure Environment Variables
+Buat file `.env` dan isi:
+```env
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=db_books
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 5. Jalankan Development Server
+```bash
+npm run dev
+```
+Aplikasi akan berjalan di [http://localhost:3000](http://localhost:3000)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🗂️ Route Structure (Next.js App Router)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+└── 📁app
+    └── 📁books
+        ├── 📁[id]
+        │   └── page.tsx               # Detail buku
+        ├── 📁categories
+        │   ├── 📁[slug]
+        │   │   ├── loading.tsx
+        │   │   └── page.tsx      # Buku by slug kategori
+        │   ├── 📁category
+        │   │   └── 📁[id]
+        │   │       └── page.tsx  # Detail kategori
+        │   ├── loading.tsx
+        │   └── page.tsx              # List kategori
+        ├── 📁create
+        │   └── page.tsx              # Form tambah buku
+        ├── 📁edit
+        │   └── 📁[id]
+        │       └── page.tsx          # Form edit buku
+        ├── layout.tsx                    # Layout khusus modul books
+        ├── loading.tsx
+        └── page.tsx                      # List semua buku
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📦 Tech Stack
+
+- **Framework**: Next.js `15.3.0` (App Router)
+- **Database**: MySQL `8+`
+- **Driver**: `mysql2` (async/await ready)
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Table/Data**: TanStack Table v8
+- **Validation**: Zod
+- **Form**: react-hook-form
+- **Date Picker**: radix-ui + date-fns
+
+---
+
+## 📸 UI Preview (WIP)
+![Preview](https://via.placeholder.com/1000x600.png?text=Insert+UI+Screenshot+Here)
+
+---
+
+## 🚀 Future Enhancements
+- [ ] Authentication & Role-based Access
+- [ ] Book cover upload with preview
+- [ ] Infinite scroll or server-side pagination
+- [ ] Export data (PDF / Excel)
+- [ ] Deploy to Vercel
+
+---
+
+> Dibuat dengan penuh semangat oleh developer yang maniac code & perfectionist ❤️
+

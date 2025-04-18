@@ -1,9 +1,9 @@
 import { getBookByID } from "@/services/books";
 import { Book } from "@/types";
 
-export default async function Page({ params }: {params: {id: number}}) {
+export default async function Page({ params }: { params: Promise<{ id: number }> }) {
 
-    const { id } = params
+    const { id } = await params
     const book = await getBookByID(id) as unknown as Book
 
     return (

@@ -14,7 +14,7 @@ import { Calendar } from "@/components/ui/calendar"
 import { format } from "date-fns"
 import { bookSchema } from "@/validation/book"
 import { useEffect, useRef, useState } from "react"
-import { Book, Category } from "@/types"
+import { Book } from "@/types"
 import { toast } from "sonner"
 import { Label } from "@/components/ui/label"
 import { useRouter } from "next/navigation"
@@ -25,7 +25,7 @@ interface FormBookProps {
 }
 
 export const FormBook = ({ defaultValues, type }: FormBookProps) => {
-    const [categories, setCategories] = useState<Category[]>([])
+    const [categories, setCategories] = useState<string[]>([])
     const [category, setCategory] = useState('')
     const categoryName = useRef<HTMLInputElement>(null);
     const categoryDescription = useRef<HTMLInputElement>(null);
@@ -38,7 +38,7 @@ export const FormBook = ({ defaultValues, type }: FormBookProps) => {
             status: "unpublish",
             author: "",
             publishAt: undefined,
-            publisher: undefined,
+            publisher: "",
             price: 0,
             pages: 1
         }
@@ -51,7 +51,7 @@ export const FormBook = ({ defaultValues, type }: FormBookProps) => {
                 .then(data => setCategories(data))
         }
         const fetchCategory = async () => {
-            await fetch(`/api/book/category/${defaultValues?.id}`, { method: 'GET' })
+            await fetch(`/api/book/category/${defaultValues?.category_id}`, { method: 'GET' })
                 .then(res => res.json())
                 .then(data => setCategory(data[0].name))
         }
@@ -171,7 +171,7 @@ export const FormBook = ({ defaultValues, type }: FormBookProps) => {
                                     </FormControl>
                                     <SelectContent>
                                         {categories.map((category, index) => (
-                                            <SelectItem key={index} value={category.name}>{category.name}</SelectItem>
+                                            <SelectItem key={index} value={category}>{category}</SelectItem>
                                         ))}
                                     </SelectContent>
                                 </Select>

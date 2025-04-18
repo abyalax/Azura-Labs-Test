@@ -7,6 +7,17 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import Link from "next/link"
+import { toast } from "sonner"
+
+
+const handleDelete = async (id: number) => {
+  const fetchDele = await fetch(`/api/book/category/${id}`, { method: 'DELETE' })
+  if (fetchDele.status === 200) {
+    toast('Deleted category successfully.')
+  } else {
+    toast('Deleted category failed.', { style: { backgroundColor: 'red', color: 'white' } })
+  }
+}
 
 const columnsCategory: ColumnDef<Category>[] = [
   {
@@ -82,6 +93,9 @@ const columnsCategory: ColumnDef<Category>[] = [
               <Link href={`/books/categories/category/${category.id}`}>
                 Edit Category
               </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => handleDelete(category.id)} className="hover:bg-red-600">
+                Delete
             </DropdownMenuItem>
             <DropdownMenuSeparator />
           </DropdownMenuContent>

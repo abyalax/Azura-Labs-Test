@@ -1,4 +1,5 @@
 'use client';
+
 import {
     DropdownMenu,
     DropdownMenuTrigger,
@@ -9,19 +10,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Table } from "@tanstack/react-table";
 
-type Props<TData> = {
+interface Props<TData> {
     label: string
     table: Table<TData>;
     lists: string[];
     columnId?: string;
 };
 
-export function FilterByDropdown<TData>({
-    label,
-    table,
-    lists,
-    columnId,
-}: Props<TData>) {
+export function FilterByDropdown<TData>({ label, table, lists, columnId, }: Props<TData>) {
 
     const column = table.getColumn(columnId ?? '');
 

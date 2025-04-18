@@ -8,6 +8,7 @@ export interface Book {
   price: number
   pages: number
   category: string
+  category_id?: number
 }
 
 export interface Category {

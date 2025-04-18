@@ -1,7 +1,8 @@
-import columnsBook from "@/components/table/book/columns";
-import Table from "@/components/table/book/Table";
+import TableBook from "@/components/table/book/table";
 import { getBooksByCategory } from "@/services/books";
 import { Book } from "@/types";
+
+export const revalidate = 30
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
 
@@ -11,7 +12,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     return (
         <main>
             <div className="bg-white mx-auto rounded-2xl p-4">
-                <Table columns={columnsBook} data={books} />
+                <TableBook data={books} />
             </div>
         </main>
     )

@@ -46,7 +46,7 @@ export const FormBook = ({ defaultValues, type }: FormBookProps) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            await fetch('/api/book/category', { method: 'GET' })
+            await fetch('/api/book/category/unique', { method: 'GET' })
                 .then(res => res.json())
                 .then(data => setCategories(data))
         }

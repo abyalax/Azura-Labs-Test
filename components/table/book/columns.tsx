@@ -10,11 +10,11 @@ import Link from "next/link"
 import { toast } from "sonner"
 
 const handleDelete = async (id: number) => {
-    const fetchDele = await fetch(`/api/book/category/${id}`, { method: 'DELETE' })
-    if (fetchDele.status === 200) {
-      toast('Deleted category successfully.')
+    const fetchDelete = await fetch(`/api/book/${id}`, { method: 'DELETE' })
+    if (fetchDelete.status === 200) {
+      toast('Deleted Book successfully.')
     } else {
-      toast('Deleted category failed.', { style: { backgroundColor: 'red', color: 'white' } })
+      toast('Deleted Book failed.', { style: { backgroundColor: 'red', color: 'white' } })
     }
   }
 

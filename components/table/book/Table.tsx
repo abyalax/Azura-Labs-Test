@@ -1,17 +1,15 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import Table from "../core/Table"
 import { createDateRangeFilter } from "../core/filters"
 import columns from "./columns"
 import { Book } from "@/types"
 
-interface DataTableProps<TData> {
-    data: TData[]
-}
-
-export default function TableBook({ data }: DataTableProps<Book>) {
+export default function TableBook() {
     const [lists, setLists] = useState<string[]>(['']);
+    const [data, setData] = useState<Book[]>([])
+    const memoizeColumns = useMemo(() => columns, [])
 
     const filter = [
         {
@@ -23,24 +21,29 @@ export default function TableBook({ data }: DataTableProps<Book>) {
 
     useEffect(() => {
         const fetchData = async () => {
-            await fetch('/api/book/category', { method: 'GET' })
+            await fetch('/api/book/category/unique', { method: 'GET' })
                 .then(res => res.json())
                 .then(data => setLists(data))
 
+            await fetch('/api/book', { method: 'GET' })
+                .then(res => res.json())    
+                .then(data => setData(data))
+
         }
         fetchData()
-        return () => setLists([]);
+        return () => {setLists([]); setData([]);};
     }, []);
 
     useEffect(() => {
         console.log(lists);
+        console.log(data);
         return () => {
         };
-    }, [lists]);
+    }, [data, lists]);
     
 
     return (
-        <Table columns={columns} data={data} filterColumns={filter} filters={{ dateRange: createDateRangeFilter() }} />
+        <Table columns={memoizeColumns} data={data} filterColumns={filter} filters={{ dateRange: createDateRangeFilter() }} />
     )
 
 }

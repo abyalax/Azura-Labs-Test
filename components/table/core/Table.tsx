@@ -92,11 +92,6 @@ export default function Table<TData, TValue>({ columns, data, filters, filterCol
     }, []);
 
     useEffect(() => {
-        console.log(dateRange);
-        return () => { };
-    }, [dateRange]);
-
-    useEffect(() => {
         if (filters && filters.dateRange) {
             if (dateRange?.from || dateRange?.to) {
                 console.log('update ui');

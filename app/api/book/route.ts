@@ -2,6 +2,35 @@ import { db } from "@/lib/db"
 import { format } from "date-fns";
 import { FieldPacket, RowDataPacket } from "mysql2/promise";
 
+export async function GET() {
+  try {
+    const [results]: [RowDataPacket[], FieldPacket[]] = await db.query(
+      `SELECT
+            book.id,
+            book.status,
+            book.title,
+            book.author,
+            book.publisher,
+            book.publishAt,
+            book.price,
+            book.pages,
+            category.name AS category
+        FROM
+            books AS book
+        JOIN
+            categories AS category ON book.category_id = category.id;`,
+    );
+    console.log(results);
+    if (results.length === 0) {
+      return new Response(JSON.stringify({ message: "Data not found" }), { status: 404 })
+    }
+    console.log(results);
+    return new Response(JSON.stringify(results), { status: 200 })
+  } catch (err) {
+    console.log(err);
+    return new Response(JSON.stringify(err), { status: 500 })
+  }
+}
 export async function POST(request: Request) {
   try {
     const data = await request.json()

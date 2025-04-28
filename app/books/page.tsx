@@ -1,15 +1,9 @@
 import { Button } from "@/components/ui/button";
 import TableBook from "@/components/table/book/table"
-import { getBooks } from "@/services/books";
-import { Book } from "@/types";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 
-export const revalidate = 30
-
 export default async function Page() {
-    const books = await getBooks() as Book[]
-
     return (
         <div className="bg-white w-fit mx-auto rounded-2xl p-4">
             <div className="flex justify-between">
@@ -21,7 +15,7 @@ export default async function Page() {
                     </Link>
                 </Button>
             </div>
-            <TableBook data={books}/>
+            <TableBook/>
         </div>
     );
 }

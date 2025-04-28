@@ -1,14 +1,22 @@
 "use client"
 
+import { useEffect, useState } from "react";
 import Table from "../core/Table"
 import columns from "./columns"
-import { Category } from "@/types"
+import { Category } from "@/types";
 
-interface DataTableProps<TData> {
-    data: TData[]
-}
+export default function TableCategory() {
+    const [data, setData] = useState<Category[]>([]);
 
-export default function TableCategory({ data }: DataTableProps<Category>) {
+    useEffect(() => {
+        const fetchData = async() => {
+            await fetch('/api/book/category', { method: 'GET' })
+                .then(res => res.json())
+                .then(data => setData(data))
+        }
+        fetchData()
+        return () => setData([]);
+    }, []);
 
     return (
         <Table columns={columns} data={data} />

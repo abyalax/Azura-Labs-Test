@@ -17,7 +17,6 @@ export const createFuzzyFilter = <TData>(): FilterFn<TData> => {
   };
 };
 
-
 /**
  * Generic, type-safe date range filter
  * Works with any table data type
